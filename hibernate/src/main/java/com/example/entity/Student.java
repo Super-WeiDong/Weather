@@ -1,6 +1,7 @@
 package com.example.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -33,6 +34,7 @@ public class Student {
     private String email;
 
     @OneToMany(mappedBy = "student", fetch = FetchType.LAZY , cascade = CascadeType.ALL, orphanRemoval = false)
+    @JsonIgnore
     private List<Teacher_Student> teacher_students;
 
     public void setId(int id) {
