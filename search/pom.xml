@@ -28,11 +28,13 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
+
+        <!-- Spring Circuit Breaker -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-circuitbreaker-resilience4j</artifactId>
-            <version> 3.0.0 </version>
+            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
@@ -42,5 +44,6 @@
             <artifactId>gson</artifactId>
         </dependency>
     </dependencies>
+
 
 </project>

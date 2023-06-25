@@ -3,6 +3,9 @@ package com.example.search.controller;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
+
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +24,9 @@ import java.util.concurrent.ExecutionException;
 @RestController
 public class SearchController {
 
-    @GetMapping("/weather/search")
+    //get all students from DB and university in China, combine the result
+    @GetMapping("/studentanduniversity/search")
+    @HystrixCommand(fallbackMethod = "fallbackOperation")
     public ResponseEntity<?> getDetails() {
         CompletableFuture<JsonNode> completableFutureStu = CompletableFuture.supplyAsync(() -> {
             try {
@@ -53,5 +58,9 @@ public class SearchController {
             e.printStackTrace();
         }
         return new ResponseEntity<>("Something went wrong, No data fetched", HttpStatus.NOT_FOUND);
+    }
+
+    public ResponseEntity<?> fallbackOperation(){
+        return new ResponseEntity<>("Oops, Something went wrong,please try again later.", HttpStatus.NOT_FOUND);
     }
 }
