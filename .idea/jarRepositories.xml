@@ -17,6 +17,11 @@
       <option name="url" value="https://repo1.maven.org/maven2" />
     </remote-repository>
     <remote-repository>
+      <option name="id" value="jfrog-snapshots" />
+      <option name="name" value="JFROG Snapshots" />
+      <option name="url" value="http://oss.jfrog.org/artifactory/oss-snapshot-local" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="spring-milestone" />
       <option name="name" value="Spring Milestone Repository" />
       <option name="url" value="https://repo.spring.io/milestone" />

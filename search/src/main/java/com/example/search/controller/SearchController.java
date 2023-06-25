@@ -6,6 +6,8 @@ import com.google.gson.Gson;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,13 +22,16 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
-
+//visit http://localhost:9001/swagger-ui.html to get swagger documentation JSON
+//visit http://localhost:9001//swagger-ui/index.html to get swagger documentation UI
 @RestController
+@Api(tags = "Student and University API")
 public class SearchController {
 
     //get all students from DB and university in China, combine the result
     @GetMapping("/studentanduniversity/search")
     @HystrixCommand(fallbackMethod = "fallbackOperation")
+    @ApiOperation("Get all students from DB and university in China, combine the result")
     public ResponseEntity<?> getDetails() {
         CompletableFuture<JsonNode> completableFutureStu = CompletableFuture.supplyAsync(() -> {
             try {
