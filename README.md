@@ -47,7 +47,7 @@ Request body:
 }
 ```
 #### Delete a student
-Endpoint: /students/{studentId}
-Method: DELETE
-Description: Deletes the student with the provided ID.
-Return: A confirmation message.
+- Endpoint: /students/{studentId}
+- Method: DELETE
+- Description: Deletes the student with the provided ID.
+- Return: A confirmation message.
