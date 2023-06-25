@@ -12,7 +12,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -28,11 +31,11 @@ import java.util.concurrent.ExecutionException;
 @Api(tags = "Student and University API")
 public class SearchController {
 
-    //get all students from DB and university in China, combine the result
-    @GetMapping("/studentanduniversity/search")
+    //get all students from DB and university in {country}, combine the result
+    @GetMapping("/studentanduniversity/search/{country}")
     @HystrixCommand(fallbackMethod = "fallbackOperation")
-    @ApiOperation("Get all students from DB and university in China, combine the result")
-    public ResponseEntity<?> getDetails() {
+    @ApiOperation("Get all students from DB and university in PathVariable {country}, combine the result")
+    public ResponseEntity<?> getDetails(@PathVariable String country) {
         CompletableFuture<JsonNode> completableFutureStu = CompletableFuture.supplyAsync(() -> {
             try {
                 URL url = new URL("http://localhost:8200/students");
@@ -42,19 +45,14 @@ public class SearchController {
                 return null;
             }
         });
-        CompletableFuture<JsonNode> completableFutureUni= CompletableFuture.supplyAsync(() -> {
-            try {
-                URL url = new URL("http://localhost:8086/university/search?country=china");
-                ObjectMapper objectMapper = new ObjectMapper();
-                return objectMapper.readTree(url);
-            } catch (IOException e) {
-                return null;
-            }
-        });
+
+        RestTemplate restTemplate = new RestTemplate();
+        String url = "http://localhost:8086/university/search?country="+country;
+        ResponseEntity<JsonNode> response = restTemplate.getForEntity(url, JsonNode.class);
+        JsonNode uniData = response.getBody();
 
         try {
             JsonNode jsonData = completableFutureStu.get();
-            JsonNode uniData = completableFutureUni.get();
             Map<String,JsonNode> resMap = new HashMap<String,JsonNode>();
             resMap.put("Student Data",jsonData);
             resMap.put("Univeristy Data",uniData);
@@ -65,7 +63,7 @@ public class SearchController {
         return new ResponseEntity<>("Something went wrong, No data fetched", HttpStatus.NOT_FOUND);
     }
 
-    public ResponseEntity<?> fallbackOperation(){
+    public ResponseEntity<?> fallbackOperation(@PathVariable String country){
         return new ResponseEntity<>("Oops, Something went wrong,please try again later.", HttpStatus.NOT_FOUND);
     }
 }
