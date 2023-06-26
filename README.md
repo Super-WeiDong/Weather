@@ -107,6 +107,13 @@ Example:
 http://localhost:8086/university/search?country=china
 ```
 
+### Logging
+Implemented a logging system using the slf4j framework.
+
+### Global Exception handler
+Implemented a global exception handler using ControllerAdvice.
+
+
 ## Search Service
 #### Base URL: /
 #### Port: 9001
