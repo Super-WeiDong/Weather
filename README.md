@@ -112,7 +112,16 @@ Implemented a logging system using the slf4j framework.
 
 ### Global Exception handler
 Implemented a global exception handler using ControllerAdvice.
+#### Handle StudentNotFoundException
+Exception Type: StudentNotFoundException
+Response Status: 404 NOT FOUND
+Function: throw StudentNotFoundException when a student is not found in the our database
 
+
+Other Exceptions
+Exception Type: Exception
+Response Status: 400 BAD REQUEST
+Function: Handles any other exception caught by the exception handler. 
 
 ## Search Service
 #### Base URL: /
