@@ -1,5 +1,15 @@
 # Multi-MicroServices Project
 
+## Config Service
+#### Port: 8100
+All other services fetch config from this service: 
+- details service: details-dev.properties
+- discovery service: discovery-service-dev.properties
+- gateway service: gateway-dev.properties
+- hibernate-student service: hibernate-student-dev.properties
+- search service: search-dev.properties
+- university service: university-dev.properties
+
 ## Hibernate-Student Service
 
 ### API Endpoints
@@ -88,7 +98,7 @@ http://localhost:8086/university/search?country=china
 #### Get all universities in a specific country and all students in DB
 - Endpoint: /studentanduniversity/search/{country}
 - Method: GET
-- Description: Get all universities in a specific country and all students in DB
+- Description: Get all universities in a specific country and all students in DB with CompletableFuture + restTemplate
 Example:
 ```
 http://localhost:9001/studentanduniversity/search/china
