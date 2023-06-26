@@ -1,7 +1,6 @@
-package com.example.service.impl;
+package com.example.service;
 
-import com.example.model.University;
-import com.example.service.UniversityService;
+import com.example.entity.University;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -9,11 +8,9 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
-import static com.example.constants.Url.UNIVERSITY_API_URL;
-
 @Service
 public class UniversityServiceImpl implements UniversityService {
-
+    public static final String UNIVERSITY_API_URL = "http://universities.hipolabs.com";
     private final RestTemplate restTemplate;
 
     @Autowired

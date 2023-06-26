@@ -1,6 +1,6 @@
 package com.example.controller;
 
-import com.example.model.University;
+import com.example.entity.University;
 import com.example.service.UniversityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
