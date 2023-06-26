@@ -26,6 +26,7 @@ Entry point for other services:
 - routes[3] for discovery service, path:/eureka/web
 
 ## Hibernate-Student Service
+To run this service, you need to config your data source and use the script in the resources folder to create tables and insert data.
 
 ### API Endpoints
 
