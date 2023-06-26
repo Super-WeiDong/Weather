@@ -153,3 +153,7 @@ http://localhost:9001/studentanduniversity/search/china
 - Endpoint: /details/port
 - Method: GET
 - Description: get port for weather details service
+
+## Author
+Weidong Wang
+Jun 25 2023
