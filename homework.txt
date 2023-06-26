@@ -5,7 +5,7 @@ homework:
 3. in search service(Done)
         use CompletableFuture + restTemplate => fetch student info from student service + fetch 3rd party api from demo service
 4. configure Hystrix (circuit) in one service (Done)
-5. configure swagger documentation in search service
+5. configure swagger documentation in search service (Done)
 6. configure student service in gateway (Done)
 
 
