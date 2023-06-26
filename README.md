@@ -15,7 +15,8 @@ All other services fetch config from this service:
 ### API Endpoints
 
 #### Base URL: /students
-#### Port: 8081
+#### Port: 8200/8081
+#### Api Gateway is implemented for this Hibernate-Student service. We can use port 8200 to access it.
 #### service name: hibernate-student
 
 #### Create a new student
@@ -95,15 +96,21 @@ http://localhost:8086/university/search?country=china
 #### Port: 9001
 #### service name: search
 
+
 #### Get all universities in a specific country and all students in DB
 - Endpoint: /studentanduniversity/search/{country}
 - Method: GET
 - Description: Get all universities in a specific country and all students in DB with CompletableFuture + restTemplate
+- Hystrix circuit breaker is implemented for this api
 Example:
 ```
 http://localhost:9001/studentanduniversity/search/china
 ```
 
+#### Swagger documentation is implemented for SearchController
+- visit http://localhost:9001/swagger-ui.html to get swagger documentation in JSON format
+- visit http://localhost:9001//swagger-ui/index.html to get swagger documentation with UI
 
 
+#### Ribbon is implemented for Search Service
 
